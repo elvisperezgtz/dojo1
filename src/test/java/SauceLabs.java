@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.concurrent.TimeUnit;
+
 
 public class SauceLabs {
 
@@ -21,6 +23,8 @@ public class SauceLabs {
          */
         driver = new ChromeDriver();
         driver.get("https://www.saucedemo.com/");
+        driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
     }
 
     @AfterEach
@@ -38,9 +42,9 @@ public class SauceLabs {
         /**
          * mapeo de elementos
          */
-        WebElement usuario = driver.findElement(By.id("user-name"));
-        WebElement password = driver.findElement(By.id("password"));
-        WebElement botonIniciarSesion = driver.findElement(By.id("login-button"));
+        WebElement usuario = driver.findElement(By.name("user-name"));
+        WebElement password = driver.findElement(By.name("password"));
+        WebElement botonIniciarSesion = driver.findElement(By.name("login-button"));
         /**
          * Acciones necesarias para llevar la aplicacion al estado deseado
          */
